@@ -18,27 +18,40 @@
             <p class="subtitle">過去の注文履歴を確認できます</p>
         </header>
 
-        <!-- フィルター -->
-        <div class="orders-filters">
-                <div class="filter-group">
-                    <label for="statusFilter">ステータスで絞り込み</label>
-                    <select id="statusFilter" class="form-control">
-                        <option value="">全ての注文</option>
-                        <option value="pending">注文受付</option>
-                        <option value="ready">準備完了</option>
-                        <option value="completed">受取完了</option>
-                        <option value="cancelled">キャンセル</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="dateFromFilter">期間で絞り込み(開始日)</label>
-                    <input type="date" id="dateFromFilter" class="form-control">
-                </div>
-                <div class="filter-group">
-                    <label for="dateToFilter">期間で絞り込み(終了日)</label>
-                    <input type="date" id="dateToFilter" class="form-control">
+    <!-- フィルター -->
+    <section class="filter-section orders-filters" role="region" aria-label="注文フィルター">
+            <div class="filter-group filter-search-primary" style="display:none;">
+                <!-- 顧客側では検索を非表示にしているが将来用に領域を確保 -->
+            </div>
+
+            <div class="filter-group">
+                <label for="statusFilter">ステータス</label>
+                <select id="statusFilter" class="form-control filter-select" aria-label="ステータスで絞り込み">
+                    <option value="">全ての注文</option>
+                    <option value="pending">注文受付</option>
+                    <option value="ready">準備完了</option>
+                    <option value="completed">受取完了</option>
+                    <option value="cancelled">キャンセル</option>
+                </select>
+            </div>
+
+            <div class="filter-group filter-date-range">
+                <label>期間</label>
+                <div class="date-range-wrapper">
+                    <div class="date-input-group">
+                        <div class="info-label">開始日</div>
+                        <input type="date" id="dateFromFilter" class="form-control date-input" aria-label="開始日">
+                    </div>
+
+                    <div class="date-separator" aria-hidden="true">—</div>
+
+                    <div class="date-input-group">
+                        <div class="info-label">終了日</div>
+                        <input type="date" id="dateToFilter" class="form-control date-input" aria-label="終了日">
+                    </div>
                 </div>
             </div>
+    </section>
 
             <!-- 注文リスト -->
             <div id="ordersList" class="orders-list">

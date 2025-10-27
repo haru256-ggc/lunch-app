@@ -31,14 +31,26 @@
 }
 
 .filter-group label {
-    font-weight: 600;
+    font-weight: 700;
     color: #495057;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 .filter-group input[type="date"],
 .filter-group select {
     width: 100%;
+}
+
+/* 開始日/終了日の見出しを他ページと合わせて強調 */
+.orders-filters .info-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.orders-filters .date-input {
+    font-size: 1rem;
+    padding: 0.75rem 0.95rem;
 }
 
 /* 注文リスト */
@@ -67,10 +79,9 @@
     padding: 1.25rem 1.5rem;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-bottom: 1px solid #dee2e6;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    flex-wrap: wrap;
     gap: 0.5rem;
 }
 
@@ -83,6 +94,11 @@
 .order-date {
     font-size: 0.875rem;
     color: #6c757d;
+    justify-self: end;
+}
+
+.order-status {
+    justify-self: center;
 }
 
 /* 注文ステータス */
