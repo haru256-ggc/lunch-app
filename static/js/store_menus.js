@@ -515,6 +515,40 @@ function renderMenus(menusToRender) {
         
         // チェックボックスの状態
         const isChecked = selectedMenuIds.has(menu.id);
+
+        // カテゴリバッジを組み立てる
+        let categoryBadgeHtml = '';
+        try {
+            const cat = categories.find(c => c.id === menu.category_id);
+            if (cat) {
+                const name = cat.name || '';
+                const slugMap = {
+                    'サイドメニュー': 'side',
+                    'ヘルシー': 'healthy',
+                    '海の幸': 'sea',
+                    '定番': 'classic',
+                    '肉の彩り': 'meat',
+                    '丼もの': 'donburi'
+                };
+                const iconMap = {
+                    'サイドメニュー': '🥗',
+                    'ヘルシー': '🥬',
+                    '海の幸': '🐟',
+                    '定番': '🍽️',
+                    '肉の彩り': '🥩',
+                    '丼もの': '🍚'
+                };
+                const slug = slugMap[name] || String(name).toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                const icon = iconMap[name] || '📁';
+                categoryBadgeHtml = `<span class="category-badge category-${slug}" title="${escapeHtml(name)}">${icon}<span class="category-label">${escapeHtml(name)}</span></span>`;
+            } else if (menu.category_id === 0) {
+                // カテゴリなし
+                categoryBadgeHtml = `<span class="category-badge category-none" title="カテゴリなし">📁<span class="category-label">カテゴリなし</span></span>`;
+            }
+        } catch (e) {
+            console.error('カテゴリバッジ生成エラー', e);
+            categoryBadgeHtml = '';
+        }
         
         return `
         <tr>
@@ -532,7 +566,7 @@ function renderMenus(menusToRender) {
                     : '<div class="menu-no-image">📷</div>'
                 }
             </td>
-            <td class="menu-name">${highlightedName}</td>
+            <td class="menu-name">${highlightedName} ${categoryBadgeHtml}</td>
             <td class="menu-description">${highlightedDescription}</td>
             <td class="menu-price">¥${menu.price.toLocaleString()}</td>
             <td>

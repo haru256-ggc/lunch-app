@@ -510,6 +510,77 @@
     color: #721c24;
 }
 
+/* ===== カテゴリバッジ ===== */
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    font-family: 'Rounded Mplus 1c', 'Noto Sans JP', 'Hiragino Maru Gothic ProN', 'Yu Gothic UI', Meiryo, 'Noto Sans', sans-serif;
+}
+
+.category-badge .category-label {
+    margin-left: 4px;
+    font-size: 12px;
+    color: inherit;
+}
+
+.category-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* カテゴリ固有のカラースキーム */
+.category-side {
+    background: linear-gradient(180deg, #f7efe6 0%, #f3e8d9 100%);
+    color: #5a4532;
+}
+
+.category-healthy {
+    background: linear-gradient(180deg, #e8f8ec 0%, #d7f0d8 100%);
+    color: #1b5e20;
+}
+
+.category-sea {
+    background: linear-gradient(180deg, #e9f5ff 0%, #d9eeff 100%);
+    color: #0b5394;
+}
+
+.category-classic {
+    background: linear-gradient(180deg, #f5f5f6 0%, #e9e9ea 100%);
+    color: #333333;
+}
+
+.category-meat {
+    background: linear-gradient(180deg, #ffeceb 0%, #ffd9d0 100%);
+    color: #7a1212;
+}
+
+.category-donburi {
+    background: linear-gradient(180deg, #fff6ea 0%, #ffe6cc 100%);
+    color: #a64e00;
+}
+
+.category-none {
+    background: linear-gradient(180deg, #f0f0f0 0%, #e8e8e8 100%);
+    color: #555;
+}
+
+/* 小さい画面ではラベルを短くする（アイコンメイン） */
+@media (max-width: 640px) {
+    .category-badge .category-label {
+        display: none;
+    }
+}
+
 /* 日付 */
 .menu-date {
     font-size: 13px;
