@@ -46,53 +46,65 @@
                 </section>
 
                 <!-- フィルターセクション -->
-                <div class="filter-section">
-                    <!-- 検索バーを最優先で配置 -->
+                <div class="filter-section" role="region" aria-label="注文フィルター">
+                    <!-- 検索バー（横幅いっぱい） -->
                     <div class="filter-group filter-search-primary">
-                        <label for="searchInput">注文検索:</label>
-                        <input type="text" id="searchInput" class="form-control search-input" 
-                               placeholder="注文番号、顧客名、メニュー名で検索...">
-                    </div>
-
-                    <!-- ステータスフィルター -->
-                    <div class="filter-group">
-                        <label>ステータス:</label>
-                        <div class="status-checkboxes">
-                            <label><input type="checkbox" class="status-checkbox" value="pending" checked> 注文受付</label>
-                            <label><input type="checkbox" class="status-checkbox" value="confirmed" checked> 注文確認済み</label>
-                            <label><input type="checkbox" class="status-checkbox" value="preparing" checked> 調理中</label>
-                            <label><input type="checkbox" class="status-checkbox" value="ready" checked> 準備完了</label>
-                            <label><input type="checkbox" class="status-checkbox" value="completed"> 受け渡し完了</label>
-                            <label><input type="checkbox" class="status-checkbox" value="cancelled"> キャンセル</label>
+                        <label for="searchInput">注文検索</label>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="searchInput" class="form-control search-input" 
+                                   placeholder="注文番号、顧客名、メニュー名で検索..." aria-label="注文検索">
+                            <button id="clearSearchBtn" class="btn btn-outline-primary" style="display: none;" aria-label="検索をクリア">クリア</button>
                         </div>
                     </div>
 
-                    <!-- 日付フィルター -->
-                    <div class="filter-group">
-                        <label for="startDate">開始日:</label>
-                        <input type="date" id="startDate" class="form-control">
+                    <!-- ステータスフィルター（カード風のチェックボックス群） -->
+                    <div class="filter-group filter-status">
+                        <label>ステータス</label>
+                        <div class="checkbox-group status-checkboxes" role="group" aria-label="ステータスフィルター">
+                            <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="pending" checked><span>注文受付</span></label>
+                            <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="confirmed" checked><span>注文確認済み</span></label>
+                            <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="preparing" checked><span>調理中</span></label>
+                            <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="ready" checked><span>準備完了</span></label>
+                            <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="completed"><span>受け渡し完了</span></label>
+                            <label class="checkbox-label"><input type="checkbox" class="status-checkbox" value="cancelled"><span>キャンセル</span></label>
+                        </div>
                     </div>
 
-                    <div class="filter-group">
-                        <label for="endDate">終了日:</label>
-                        <input type="date" id="endDate" class="form-control">
+                    <!-- 日付範囲フィルター（開始日 / 終了日 を隣接） -->
+                    <div class="filter-group filter-date-range">
+                        <label>期間</label>
+                        <div class="date-range-wrapper">
+                            <div class="date-input-group">
+                                <div class="info-label">開始日</div>
+                                <input type="date" id="startDate" class="form-control date-input" aria-label="開始日">
+                            </div>
+
+                            <div class="date-separator" aria-hidden="true">—</div>
+
+                            <div class="date-input-group">
+                                <div class="info-label">終了日</div>
+                                <input type="date" id="endDate" class="form-control date-input" aria-label="終了日">
+                            </div>
+
+                            <div class="btn-clear-date">
+                                <button id="clearDateBtn" class="btn btn-outline-primary" style="display: none;" aria-label="日付をクリア">日付クリア</button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 並び順 -->
-                    <div class="filter-group">
-                        <label for="sortOrder">並び順:</label>
-                        <select id="sortOrder" class="form-control">
+                    <div class="filter-group filter-sort">
+                        <label for="sortOrder">並び順</label>
+                        <select id="sortOrder" class="form-control filter-select" aria-label="並び順">
                             <option value="newest">新しい順</option>
                             <option value="oldest">古い順</option>
                             <option value="pickup_time">受け取り時間順</option>
                         </select>
                     </div>
 
-                    <!-- フィルターボタン -->
-                    <div class="filter-group">
-                        <button id="clearSearchBtn" class="btn btn-outline-primary" style="display: none;">検索クリア</button>
-                        <button id="clearDateBtn" class="btn btn-outline-primary" style="display: none;">日付クリア</button>
-                        <button id="resetFiltersBtn" class="btn btn-outline-secondary">フィルターリセット</button>
+                    <!-- アクション -->
+                    <div class="filter-group filter-actions">
+                        <button id="resetFiltersBtn" class="btn btn-reset btn-primary" aria-label="フィルターをリセット">リセット</button>
                     </div>
                 </div>
 
